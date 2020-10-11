@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Śpiewnik pielgrzyma</title>
+        <meta content="Kamil Chmielowski" name="author">
+        <meta name="description" content="Śpiewnik pieśni chrześcijańskich">
+        <meta content="spiewnik,pielgrzyma,chrzescijanski,chrzescijanstwo,protestancki,protestantyzm,zborowy,zbor,koscielny,kosciol" name="keywords">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="icon" href="img/icon.ico" type="image/ico" />
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">Używasz <strong>przestarzałej</strong> wersji przeglądarki. Dokonaj proszę jej <a href="#">aktualizacji</a>, żeby umożliwić prawidłową obsługę strony.</p>
+        <![endif]-->
+        
+        <header class="header">
+            <div class="actions">
+                <div class="hamburger" id="hamburgerId" aria-label="nawigacja" onclick="toggleNav()" tabindex="0">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <input id="inputId" class="input main-input" type="number" aria-label="szukaj po numerze" placeholder="numer" />
+
+                <audio controls controlsList="nodownload" class="audio" id="playerId">
+                    <source src='' type='audio/mpeg'>
+                </audio>
+
+                <input type="checkbox" id="pianoId" class="piano" name="piano" onclick="changeMusicVersion(event)">
+                <label for="pianoId" class="piano-label" id="pianoLabelId">instrument</label>
+            </div>
+
+            <button class="title main-title" id="titleId" aria-label="losuj pieśń" onclick="randomSong()">Śpiewnik pielgrzyma</button>
+        </header>
+
+        <main class="main">
+            <sidenav id="sidenavId" class="sidenav">
+                <button class="sidenav-title" id="titleId" aria-label="losuj pieśń" onclick="randomSong()">Śpiewnik pielgrzyma</button>
+
+                <div class="input-wrapper">
+                    <input id="sidenavInputId" class="input sidenav-input" type="number" aria-label="szukaj po numerze" placeholder="numer" />
+                    
+                    <input type="checkbox" id="sidenavPianoId" class="piano" name="piano" onclick="changeMusicVersion(event)">
+                    <label for="sidenavPianoId" class="piano-label" id="sidenavPianoLabelId">instrument</label>
+                </div>
+
+            </sidenav>
+
+            <article id="articleId" class="article"></article>
+        </main>
+        
+        <footer class="footer" id=footerId></footer>  
+        
+        <script src="scripts/script.js" async defer></script>
+    </body>
+</html>
