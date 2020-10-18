@@ -99,49 +99,49 @@ body {
     width: 500px;
 }
 
-.piano {
+.checkbox {
     width: 1.5rem;
     height: 1.5rem;
     margin-left: 1.4rem;
     margin-right: 0.7rem;
 }
 
-.piano:hover {
+.checkbox:hover {
     cursor: pointer;
 }
 
-.piano:disabled {
+.checkbox:disabled {
     cursor: default;
 }
 
-.piano-label {
-    font-size: 1.6rem;
+.checkbox-label {
+    font-size: 1.4rem;
 }
 
-.piano-label:hover {
+.checkbox-label:hover {
     cursor: pointer;
     color: #fff;
 }
 
-.piano-label.disabled:hover {
+.checkbox-label.disabled:hover {
     cursor: default;
     color: #ddd;
 }
 
 @media only screen and (max-width : 639px) {
-    .header .actions .piano,
-    .header .actions .piano-label {
+    .header .actions .checkbox,
+    .header .actions .checkbox-label {
         display: none;
     }
 }
 
-.main .sidenav .piano-label {
+.main .sidenav .checkbox-label {
     font-size: 1.2rem;
 }
 
 @media only screen and (min-width : 640px) {
-    .main .sidenav .piano,
-    .main .sidenav .piano-label {
+    .main .sidenav .checkbox,
+    .main .sidenav .checkbox-label {
         display: none;
     }
 }
@@ -245,6 +245,17 @@ body {
     .main .sidenav .input-wrapper {
         display: none;
     }
+}
+
+.main .sidenav .options-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.main .sidenav .options-wrapper #sidenavPianoId {
+    margin-left: 0;
 }
 
 .article {

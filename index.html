@@ -32,8 +32,11 @@
                     <source src='' type='audio/mpeg'>
                 </audio>
 
-                <input type="checkbox" id="pianoId" class="piano" name="piano" onclick="changeMusicVersion(event)">
-                <label for="pianoId" class="piano-label" id="pianoLabelId">instrument</label>
+                <input type="checkbox" id="pianoId" class="checkbox" name="piano" onclick="changeMusicVersion(event)">
+                <label for="pianoId" class="checkbox-label" id="pianoLabelId">instrument</label>
+
+                <input type="checkbox" id="playlistId" class="checkbox" name="playlist">
+                <label for="playlistId" class="checkbox-label">playlista</label>
             </div>
 
             <button class="title main-title" id="titleId" aria-label="losuj pieśń" onclick="randomSong()">Śpiewnik pielgrzyma</button>
@@ -45,11 +48,15 @@
 
                 <div class="input-wrapper">
                     <input id="sidenavInputId" class="input sidenav-input" type="number" aria-label="szukaj po numerze" placeholder="numer" />
-                    
-                    <input type="checkbox" id="sidenavPianoId" class="piano" name="piano" onclick="changeMusicVersion(event)">
-                    <label for="sidenavPianoId" class="piano-label" id="sidenavPianoLabelId">instrument</label>
                 </div>
 
+                <div class="options-wrapper">
+                    <input type="checkbox" id="sidenavPianoId" class="checkbox" name="piano" onclick="changeMusicVersion(event)">
+                    <label for="sidenavPianoId" class="checkbox-label" id="sidenavPianoLabelId">instrument</label>
+                    
+                    <input type="checkbox" id="sidenavPlaylistId" class="checkbox" name="playlist">
+                    <label for="sidenavPlaylistId" class="checkbox-label">playlista</label>
+                </div>
             </sidenav>
 
             <article id="articleId" class="article"></article>

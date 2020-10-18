@@ -458,8 +458,8 @@ const songs = [
         id: 762,
         title: 'Nie zawsze będę pielgrzymował',
         text: '1. Nie zawsze będę pielgrzymował, W padole bólu ziemskich bied; Jak przyjdzie czas, to mój Zbawiciel Powoła do niebieskich stref.<br><br>2. Ja Tobie, Zbawco, służyć pragnę, Bo Tyś mnie kupił drogą krwią. Tyś jest mój Król i mój Zbawiciel, A ja chcę być własnością Twą.<br><br>3. Gdy w chwili trosk i udręczenia, Zabraknie sił w pielgrzymce mej; To usłysz, Panie, me wołanie I ześlij pomoc w chwili tej.', 
-    	voice: null,
-		piano: null,
+    	voice: '1G2pNAEaH7BRme2nkPfpZ0ThVNxq76SpB',
+		piano: '1l3Uq2clzd_B9tyFG-Tr81ty46yrCUswn',
 	},
     {
         id: 764,
@@ -483,14 +483,14 @@ const songs = [
 		piano: '1M3hHpuhgd72pgiobDFZ-wnJ_BJGGJ220',
 	},
     {
-        id: 'a',
+        id: '861',
         title: 'Cudowna Boża łaska',
 		text: 'Cudowna Boża łaska ta, zbawiła z grzechów mnie. <br>Zgubionym, grzesznym byłem ja, lecz teraz cieszę się. <br><br>Ta łaska wlała Boży strach, w kamienne serce me.<br>I wtedy zobaczyłem w łzach, żem na przepaści dnie.<br><br>Lecz łaska podźwignęła mnie, i naprzód wiedzie wciąż.<br>Przez ciemne i burzliwe dnie, tam, gdzie ojcowski dom.<br><br>O Boże, dzięki, dzięki Ci, za cudną łaskę Twą.<br> Do nóg Twych padam w kornej czci Niebiosa chwałą brzmią.',
     	voice: '1wpz1nCZpIWsXupNGlY2V2wvc-rsGCmsO',
 		piano: null,
 	},
     {
-        id: 'b',
+        id: '862',
         title: 'Oto jest dzień',
 		text: 'Oto jest dzień [2x], który dał na Pan, [2x] weselmy się [2x] i radujmy się nim. [2x] <br><br> Oto jest dzień, który dał nam Pan, weselmy się i radujmy się nim. <br><br> Oto jest dzień [2x], który dał nam pan',
 		voice: '1Z8GqfVkamENYM8OMMA_D6up-H_l1DKHi',
@@ -511,22 +511,69 @@ const piano = document.getElementById('pianoId');
 const sidenavPiano = document.getElementById('sidenavPianoId');
 const pianoLabel = document.getElementById('pianoLabelId');
 const sidenavPianoLabel = document.getElementById('sidenavPianoLabelId');
+const sidenavOptions = document.getElementsByClassName('sidenav-option');
+const playlist = document.getElementById('playlistId');
+const sidenavPlaylist = document.getElementById('sidenavPlaylistId');
 
 let selectedSidenavIndex;
 let pianoValue = false;
 let pianoRef;
 let pianoLabelRef;
+let isSmallResolution = false;
 
 input.addEventListener('input', (event) => handleInputEvent(+event.target.value));
-sidenavInputId.addEventListener('input', (event) => handleInputEvent(+event.target.value));
+sidenavInputId.addEventListener('input', (event) => handleSidenavInputEvent(+event.target.value));
+
+playlist.addEventListener('change', (event) => handlePlaylistChange(event.target.checked));
+sidenavPlaylist.addEventListener('change', (event) => handlePlaylistChange(event.target.checked));
+
+function handlePlaylistChange(checked, resolution) {
+	if (!checked) {
+		return;
+	}
+	if (undefined === selectedSidenavIndex || null === selectedSidenavIndex) {
+		selectedSidenavIndex = -1;
+	} else {
+		selectedSidenavIndex--;
+	}
+	handleNextSong();
+}
+
+player.addEventListener('ended', (event) => {
+	if (playlist.checked || sidenavPlaylist.checked) {
+		handleNextSong();
+	}
+});
+
+function handleNextSong() {
+	const song = songs[selectedSidenavIndex + 1];
+	const id = song ? song.id : songs[0].id;
+	setInputValue(id);
+	handleInputEvent(id);
+	player.play();
+}
 
 function handleInputEvent(value) {
-    const song = songs.find(song => song.id === value);
-    const index = songs.findIndex(song => song.id === value);
+	const song = songs.find(song => song.id === value);
+	const index = songs.findIndex(song => song.id === value);
     article.innerHTML = song ? song.text : 'brak';
     reloadPlayer(song);
     song ? article.classList.remove('missing') : article.classList.add('missing')
     toggleSelectedOption(index);
+}
+
+function handleSidenavInputEvent(value) {
+	if (value > 0) {	
+		let i = 0;
+		for (let option of sidenavOptions) {
+			const song = songs[i++];
+			option.style.display = song.id === value ? 'block' : 'none';
+		}
+	} else {
+		for (let option of sidenavOptions) {
+			option.style.display = 'block';
+		}
+	}
 }
 
 function toggleSelectedOption(index) {
@@ -544,6 +591,9 @@ function toggleSelectedOption(index) {
         selectedSidenavIndex = index;
 	}   
 	setInstrumentAccess(songs[index]);
+	if (isSmallResolution) {
+		nav.style.width = '0';
+	}
 }
 
 input.addEventListener('change', (event) => {
@@ -652,12 +702,13 @@ function setInstrumentAccess(song) {
 }
 
 function detectResolution() {
-	if ('none' !== window.getComputedStyle(piano).getPropertyValue('display') ) {
+	if ('none' !== window.getComputedStyle(piano).getPropertyValue('display')) {
 		pianoRef = piano;
 		pianoLabelRef = pianoLabel;
 	} else {
 		pianoRef = sidenavPiano;
 		pianoLabelRef = sidenavPianoLabel;
+		isSmallResolution = true;
 	}
 }
 
