@@ -80,7 +80,19 @@ body {
     .main-title {
         display: none;
     }
-} 
+}
+
+@media only screen and (max-width : 1350px) {
+    .main-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width : 1100px) {
+    .main-title {
+        font-size: 1.2rem;
+    }
+}
 
 @media only screen and (max-width : 639px) {
     .title {
@@ -98,6 +110,9 @@ body {
     height: 2.2rem;
     width: 500px;
 }
+
+@media only screen and (max-width : 1270px) { .audio { width: 450px; } }
+@media only screen and (max-width : 1220px) { .audio { width: 400px; } }
 
 .checkbox {
     width: 1.5rem;
@@ -151,11 +166,7 @@ body {
     top: 4rem;
     min-height: calc(100vh - 6.2rem);
     width: 100%;
-
-    background-image: url('../img/background.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: auto;
+    background-color: burlywood;
 }
 
 .main .sidenav {

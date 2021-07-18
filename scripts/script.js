@@ -519,7 +519,6 @@ let selectedSidenavIndex;
 let pianoValue = false;
 let pianoRef;
 let pianoLabelRef;
-let isSmallResolution = false;
 
 input.addEventListener('input', (event) => handleInputEvent(+event.target.value));
 sidenavInputId.addEventListener('input', (event) => handleSidenavInputEvent(+event.target.value));
@@ -589,9 +588,11 @@ function toggleSelectedOption(index) {
     if (!!options[index]) {
         options[index].classList.add('selected');
         selectedSidenavIndex = index;
-	}   
+	}
 	setInstrumentAccess(songs[index]);
-	if (isSmallResolution) {
+
+	const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+	if (viewportWidth < (1000 + 320 * 2)) {
 		nav.style.width = '0';
 	}
 }
@@ -708,7 +709,6 @@ function detectResolution() {
 	} else {
 		pianoRef = sidenavPiano;
 		pianoLabelRef = sidenavPianoLabel;
-		isSmallResolution = true;
 	}
 }
 
